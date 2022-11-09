@@ -4,9 +4,6 @@ import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
 
-
-
-
 function HomePage() {
   const estiloDaHomePage = {
     // backgroundColor: "red" 
@@ -23,7 +20,7 @@ function HomePage() {
         // backgroundColor: "red",
       }}>
         <Menu />
-        <Header />
+        <Header imgs={config.imgs} />
         <Timeline playlists={config.playlists}>
           Conteúdo
         </Timeline>
@@ -41,11 +38,25 @@ export default HomePage
 // }
 
 const StyledHeader = styled.div`
-      img {
-        width: 80px;
-      height: 80px;
-      border-radius: 50%;
+  .banner-img {
+    width: 100%;
+    height: 230px;
+    left: 0px;
+    top: 56px;
+    object-fit: cover;
   }
+
+  .banner {
+        display: flex;
+      align-items: center;
+      width: 100%;
+  }
+
+  .profile {
+    width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
       .user-info {
         display: flex;
       align-items: center;
@@ -54,19 +65,23 @@ const StyledHeader = styled.div`
       gap: 16px;
   }
       `;
-function Header() {
+function Header(props) {
+  const bannerImg = props.imgs.home[0].bannerImg
+  const profileImg = props.imgs.home[1].profile
   return (
     <StyledHeader>
-      {/* <img src="banner" alt="" /> */}
+      <section className="banner">
+        < img className="banner-img" src={bannerImg} />
+      </section>
       <section className="user-info">
-        <img src={`https://github.com/${config.github}.png`} />
+        <img className="profile" src={profileImg} />
         <div>
           <h2>
             {config.name}
           </h2>
-          <h4>
+          <h5>
             {config.job}
-          </h4>
+          </h5>
         </div>
       </section>
     </StyledHeader>
